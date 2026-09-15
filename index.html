@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Sofi 💗 — Ruleta de planes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <div class="fondo-manchas" aria-hidden="true"></div>
+
+  <!-- ---------- Pantalla de código secreto ---------- -->
+  <div class="pantalla-candado" id="pantallaCandado">
+    <div class="tarjeta-candado">
+      <p class="candado-emoji">💗</p>
+      <h1 class="candado-titulo">Para Sofi</h1>
+      <p class="candado-subtitulo">Ingresá el código para entrar</p>
+
+      <form id="formCandado" class="form-candado">
+        <input
+          type="text"
+          id="inputCodigo"
+          placeholder="Código secreto"
+          autocomplete="off"
+          inputmode="text"
+        >
+        <button type="submit">Abrir</button>
+      </form>
+
+      <p class="candado-error" id="candadoError" hidden>Ese no es el código correcto, probá de nuevo 💭</p>
+    </div>
+  </div>
+
+  <!-- ---------- Contenido de la app ---------- -->
+  <div class="contenido-app oculto" id="contenidoApp">
+
+    <header class="cabecera">
+      <h1>La ruleta de <span>Los indecisos</span></h1>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="Categorías">
+      <button class="tab" data-cat="comida" role="tab" aria-selected="true">🍜 Comida</button>
+      <button class="tab" data-cat="planes" role="tab" aria-selected="false">🎬 Planes</button>
+      <button class="tab" data-cat="lugar" role="tab" aria-selected="false">📍 A dónde ir</button>
+      <button class="tab" data-cat="sio" role="tab" aria-selected="false">💗 ¿Sí o no?</button>
+    </nav>
+
+    <main class="tablero">
+
+      <section class="zona-ruleta">
+        <div class="soporte-ruleta">
+          <div class="clavija"></div>
+          <canvas id="ruleta" width="440" height="440"></canvas>
+        </div>
+        <button id="girar" class="boton-girar">
+          <span>Girar</span>
+        </button>
+      </section>
+
+      <section class="zona-opciones">
+        <div class="cabecera-opciones">
+          <h2 id="tituloCategoria">Opciones de comida</h2>
+          <span class="contador" id="contadorOpciones">0</span>
+        </div>
+
+<form id="formOpcion" class="form-opcion">
+  <input type="text" id="nuevaOpcion" >
+  <button type="submit" aria-label="Agregar opción">+</button>
+</form>
+
+        <ul id="listaOpciones" class="lista-opciones"></ul>
+
+        <p class="pista" id="pistaVacia">Agregá al menos 2 opciones para poder girar.</p>
+      </section>
+
+    </main>
+
+    <div class="modal-resultado" id="modalResultado" hidden>
+      <div class="tarjeta-resultado">
+        <p class="modal-rotulo">Salió...</p>
+        <p class="modal-resultado-texto" id="textoResultado">—</p>
+        <div class="modal-botones">
+          <button id="cerrarModal" class="boton-secundario">Girar de nuevo</button>
+          <button id="aceptarModal" class="boton-principal">Listo, vamos</button>
+        </div>
+      </div>
+    </div>
+
+    <canvas id="confeti" class="confeti"></canvas>
+
+  </div>
+
+  <script src="js/script.js" defer></script>
+</body>
+</html>
