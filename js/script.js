@@ -32,6 +32,31 @@ formCandado.addEventListener("submit", (e) => {
   }
 });
 
+// ---------- Contador de tiempo juntos ----------
+// 12 de agosto de 2025, 16:15 (mes en JS empieza en 0, por eso agosto es el 7)
+const FECHA_INICIO = new Date(2025, 7, 12, 16, 15, 0);
+
+function actualizarContadorTiempo(){
+  if (!contadorTiempo) return;
+
+  const ahora = new Date();
+  const diferenciaMs = ahora - FECHA_INICIO;
+
+  if (diferenciaMs < 0){
+    contadorTiempo.textContent = "La cuenta todavía no arrancó 💗";
+    return;
+  }
+
+  const segundosTotales = Math.floor(diferenciaMs / 1000);
+  const dias = Math.floor(segundosTotales / 86400);
+  const horas = Math.floor((segundosTotales % 86400) / 3600);
+  const minutos = Math.floor((segundosTotales % 3600) / 60);
+  const segundos = segundosTotales % 60;
+
+  contadorTiempo.textContent =
+    `Llevamos ${dias} días, ${horas}h ${minutos}m ${segundos}s juntos 💗`;
+}
+
 // ---------- Datos iniciales ----------
 const CATEGORIAS = {
   comida: {
@@ -44,7 +69,7 @@ const CATEGORIAS = {
   },
   lugar: {
     titulo: "Opciones de lugar",
-    defecto: ["Centro", "Casa mia", "Casa tuya", "Algún bar", "Cafeteria", "Parque"]
+    defecto: ["Centro", "Casa mia", "Casa tuya", "Algún bar", "Cafeteria", "Parque", "Cine"]
   },
   sio: {
     titulo: "¿Sí o no?",
@@ -61,12 +86,13 @@ let categoriaActual = "comida";
 let opciones = [];
 let rotacionActual = 0; // radianes
 let girando = false;
+let intervaloContador = null;
 
 // ---------- Elementos (se buscan recién cuando la app se inicializa) ----------
 let canvas, ctx, botonGirar, tabs, tituloCategoria, contadorOpciones;
 let formOpcion, inputOpcion, listaOpciones, pistaVacia;
 let modalResultado, textoResultado, cerrarModal, aceptarModal;
-let canvasConfeti, ctxConfeti;
+let canvasConfeti, ctxConfeti, contadorTiempo;
 
 function inicializarApp(){
   canvas = document.getElementById("ruleta");
@@ -85,6 +111,7 @@ function inicializarApp(){
   aceptarModal = document.getElementById("aceptarModal");
   canvasConfeti = document.getElementById("confeti");
   ctxConfeti = canvasConfeti.getContext("2d");
+  contadorTiempo = document.getElementById("contadorTiempo");
 
   tabs.forEach(tab => {
     tab.addEventListener("click", () => cambiarCategoria(tab.dataset.cat));
@@ -106,6 +133,10 @@ function inicializarApp(){
   window.addEventListener("resize", ajustarTamanoConfeti);
 
   cambiarCategoria(categoriaActual);
+
+  actualizarContadorTiempo();
+  if (intervaloContador) clearInterval(intervaloContador);
+  intervaloContador = setInterval(actualizarContadorTiempo, 1000);
 }
 
 // ---------- Persistencia ----------
