@@ -80,6 +80,31 @@
 
     </main>
 
+    <!-- ---------- Galería de fotos ---------- -->
+    <section class="seccion-galeria">
+      <h2 class="titulo-seccion">Nuestros momentos 📸</h2>
+      <div class="grid-galeria" id="gridGaleria">
+        <button class="item-galeria"><img src="img/foto1.jpg" alt="Foto 1"></button>
+        <button class="item-galeria"><img src="img/foto2.jpg" alt="Foto 2"></button>
+        <button class="item-galeria"><img src="img/foto3.jpg" alt="Foto 3"></button>
+        <button class="item-galeria"><img src="img/foto4.jpg" alt="Foto 4"></button>
+        <button class="item-galeria"><img src="img/foto5.jpg" alt="Foto 5"></button>
+        <button class="item-galeria"><img src="img/foto6.jpg" alt="Foto 6"></button>
+      </div>
+    </section>
+
+    <!-- ---------- Carta sorpresa ---------- -->
+    <section class="seccion-carta">
+      <h2 class="titulo-seccion">Un mensaje para vos 💌</h2>
+      <button id="botonSobre" class="sobre" aria-label="Abrir carta">
+        <span class="sobre-solapa"></span>
+        <span class="sobre-cuerpo">
+          <span class="sobre-corazon">💌</span>
+        </span>
+      </button>
+      <p class="pista-sobre">Tocá el sobre para abrirlo</p>
+    </section>
+
     <div class="modal-resultado" id="modalResultado" hidden>
       <div class="tarjeta-resultado">
         <p class="modal-rotulo">Salió...</p>
@@ -88,6 +113,19 @@
           <button id="cerrarModal" class="boton-secundario">Girar de nuevo</button>
           <button id="aceptarModal" class="boton-principal">Listo, vamos</button>
         </div>
+      </div>
+    </div>
+
+    <div class="modal-foto" id="modalFoto" hidden>
+      <button class="cerrar-flotante" id="cerrarFoto" aria-label="Cerrar foto">✕</button>
+      <img id="imagenAmpliada" src="" alt="">
+    </div>
+
+    <div class="modal-carta" id="modalCarta" hidden>
+      <div class="tarjeta-carta">
+        <button class="cerrar-flotante cerrar-carta" id="cerrarCarta" aria-label="Cerrar carta">✕</button>
+        <p class="carta-rotulo">Para Sofi 💗</p>
+        <p class="carta-contenido" id="cartaContenido">Escribí acá el mensaje .</p>
       </div>
     </div>
 

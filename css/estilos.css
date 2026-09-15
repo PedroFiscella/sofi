@@ -509,3 +509,193 @@ input:focus-visible{
   pointer-events: none;
   z-index: 30;
 }
+
+/* ---------- Título compartido de sección ---------- */
+.titulo-seccion{
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 0 1.5rem;
+  color: var(--tinta);
+}
+
+/* ---------- Galería de fotos ---------- */
+.seccion-galeria{
+  max-width: 68rem;
+  margin: 4rem auto 0;
+  padding: 0 1.25rem;
+}
+
+.grid-galeria{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.item-galeria{
+  border: none;
+  padding: 0;
+  border-radius: 1.1rem;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+  aspect-ratio: 1 / 1;
+  background: #fff;
+  transition: transform 0.2s ease;
+}
+
+.item-galeria:hover{
+  transform: translateY(-4px) scale(1.02);
+}
+
+.item-galeria img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-foto{
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(58,31,43,0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.25rem;
+}
+
+.modal-foto[hidden]{ display: none; }
+
+.modal-foto img{
+  max-width: min(90vw, 640px);
+  max-height: 82vh;
+  border-radius: 1.2rem;
+  box-shadow: 0 25px 60px -20px rgba(0,0,0,0.6);
+  animation: aparecer 0.25s ease;
+}
+
+.cerrar-flotante{
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 41;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: var(--tinta);
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+}
+
+.cerrar-flotante:hover{ background: var(--crema-2); }
+
+/* ---------- Carta sorpresa ---------- */
+.seccion-carta{
+  max-width: 30rem;
+  margin: 4rem auto 3rem;
+  padding: 0 1.25rem;
+  text-align: center;
+}
+
+.sobre{
+  position: relative;
+  width: 11rem;
+  height: 7.5rem;
+  margin: 0 auto;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  perspective: 600px;
+}
+
+.sobre-cuerpo{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #fff, var(--crema-2));
+  border-radius: 0.9rem;
+  box-shadow: var(--sombra);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.sobre-corazon{
+  font-size: 2rem;
+  transform: translateY(0.4rem);
+}
+
+.sobre-solapa{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 5.5rem solid transparent;
+  border-right: 5.5rem solid transparent;
+  border-top: 3.8rem solid var(--rosa);
+  border-radius: 0.5rem 0.5rem 0 0;
+  transform-origin: top center;
+  transition: transform 0.35s ease;
+  z-index: 2;
+}
+
+.sobre:hover .sobre-cuerpo{ transform: translateY(-3px); }
+
+.sobre.abierto .sobre-solapa{
+  transform: rotateX(180deg);
+}
+
+.pista-sobre{
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+  color: var(--tinta-suave);
+}
+
+.modal-carta{
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(58,31,43,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.modal-carta[hidden]{ display: none; }
+
+.tarjeta-carta{
+  position: relative;
+  background: #fff;
+  border-radius: 1.5rem;
+  padding: 2.5rem 2rem 2rem;
+  max-width: 28rem;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: var(--sombra);
+  animation: aparecer 0.3s ease;
+}
+
+.carta-rotulo{
+  margin: 0 0 0.75rem;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  color: var(--rosa-oscuro);
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.carta-contenido{
+  margin: 0;
+  line-height: 1.6;
+  color: var(--tinta);
+  white-space: pre-line;
+}

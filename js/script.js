@@ -57,6 +57,68 @@ function actualizarContadorTiempo(){
     `Llevamos ${dias} días, ${horas}h ${minutos}m ${segundos}s juntos 💗`;
 }
 
+// ---------- Carta sorpresa ----------
+// Editá este texto con el mensaje que quieras dejarle a Sofi.
+// Podés usar saltos de línea normales, se van a respetar.
+const MENSAJE_CARTA = `Sofi,
+ 💗`;
+
+let botonSobre, modalCarta, cerrarCarta, cartaContenido;
+let gridGaleria, modalFoto, imagenAmpliada, cerrarFoto;
+
+function inicializarGaleriaYCarta(){
+  botonSobre = document.getElementById("botonSobre");
+  modalCarta = document.getElementById("modalCarta");
+  cerrarCarta = document.getElementById("cerrarCarta");
+  cartaContenido = document.getElementById("cartaContenido");
+
+  gridGaleria = document.getElementById("gridGaleria");
+  modalFoto = document.getElementById("modalFoto");
+  imagenAmpliada = document.getElementById("imagenAmpliada");
+  cerrarFoto = document.getElementById("cerrarFoto");
+
+  cartaContenido.textContent = MENSAJE_CARTA;
+
+  botonSobre.addEventListener("click", () => {
+    botonSobre.classList.add("abierto");
+    setTimeout(() => {
+      modalCarta.hidden = false;
+    }, 280);
+  });
+
+  cerrarCarta.addEventListener("click", () => {
+    modalCarta.hidden = true;
+    botonSobre.classList.remove("abierto");
+  });
+
+  modalCarta.addEventListener("click", (e) => {
+    if (e.target === modalCarta){
+      modalCarta.hidden = true;
+      botonSobre.classList.remove("abierto");
+    }
+  });
+
+  gridGaleria.querySelectorAll(".item-galeria").forEach(item => {
+    item.addEventListener("click", () => {
+      const src = item.querySelector("img").src;
+      const alt = item.querySelector("img").alt;
+      imagenAmpliada.src = src;
+      imagenAmpliada.alt = alt;
+      modalFoto.hidden = false;
+    });
+  });
+
+  cerrarFoto.addEventListener("click", () => {
+    modalFoto.hidden = true;
+  });
+
+  modalFoto.addEventListener("click", (e) => {
+    if (e.target === modalFoto){
+      modalFoto.hidden = true;
+    }
+  });
+}
+
 // ---------- Datos iniciales ----------
 const CATEGORIAS = {
   comida: {
@@ -69,7 +131,7 @@ const CATEGORIAS = {
   },
   lugar: {
     titulo: "Opciones de lugar",
-    defecto: ["Centro", "Casa mia", "Casa tuya", "Algún bar", "Cafeteria", "Parque", "Cine"]
+    defecto: ["Centro", "Casa mia", "Casa tuya", "Algún bar", "Cafeteria", "Parque"]
   },
   sio: {
     titulo: "¿Sí o no?",
@@ -137,6 +199,8 @@ function inicializarApp(){
   actualizarContadorTiempo();
   if (intervaloContador) clearInterval(intervaloContador);
   intervaloContador = setInterval(actualizarContadorTiempo, 1000);
+
+  inicializarGaleriaYCarta();
 }
 
 // ---------- Persistencia ----------
