@@ -60,13 +60,13 @@ function actualizarContadorTiempo(){
 // ---------- Carta sorpresa ----------
 // Editá este texto con el mensaje que quieras dejarle a Sofi.
 // Podés usar saltos de línea normales, se van a respetar.
-const MENSAJE_CARTA = `Sofi,
+const MENSAJE_CARTA = `Amor,
 
-esto lo armé pensando en nosotros, para esos días en los que no sabemos qué hacer o dónde ir.
+Sos lo mejor que me paso, Todos los dias me hace muy feliz saber que me despierto y sos mi novia, Siempre pense que no iba a encontrar a alguien que me quiera tanto como yo lo hago, Y aunque se que no todo es color de rosas siempre, con vos me gustan tambien los dias grises o negros, Y es que no me imagino un dia sin vos independientemente de todo lo que pase, No dejes de amarme porque yo nunca lo voy a hacer, Sos tan especial que me hace dudar si merezco estar con vos, Pero intento mejorar un poco todos los dias.
 
-Ojalá lo usemos un montón de veces.
+Gracias por ser mi novia este año y los que vienen, Prometo amarte lo que me queda de vida y mucho mas 💗
 
-Con cariño 💗`;
+(pd: La idea es ir agregando cartitas y fotitos hasta llenar toda la pagina, Espero te vaya gustando)`;
 
 let botonSobre, modalCarta, cerrarCarta, cartaContenido;
 let gridGaleria, modalFoto, imagenAmpliada, cerrarFoto, fotoAnterior, fotoSiguiente;
