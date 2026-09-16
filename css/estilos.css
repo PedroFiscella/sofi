@@ -595,6 +595,37 @@ input:focus-visible{
 
 .cerrar-flotante:hover{ background: var(--crema-2); }
 
+.nav-foto{
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 41;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: var(--tinta);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-foto:hover{ background: var(--crema-2); }
+
+.nav-izquierda{ left: 1rem; }
+.nav-derecha{ right: 1rem; }
+
+@media (max-width: 640px){
+  .nav-foto{ width: 2.5rem; height: 2.5rem; font-size: 1.5rem; }
+  .nav-izquierda{ left: 0.4rem; }
+  .nav-derecha{ right: 0.4rem; }
+}
+
 /* ---------- Carta sorpresa ---------- */
 .seccion-carta{
   max-width: 30rem;

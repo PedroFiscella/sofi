@@ -61,10 +61,39 @@ function actualizarContadorTiempo(){
 // Editá este texto con el mensaje que quieras dejarle a Sofi.
 // Podés usar saltos de línea normales, se van a respetar.
 const MENSAJE_CARTA = `Sofi,
- 💗`;
+
+esto lo armé pensando en nosotros, para esos días en los que no sabemos qué hacer o dónde ir.
+
+Ojalá lo usemos un montón de veces.
+
+Con cariño 💗`;
 
 let botonSobre, modalCarta, cerrarCarta, cartaContenido;
-let gridGaleria, modalFoto, imagenAmpliada, cerrarFoto;
+let gridGaleria, modalFoto, imagenAmpliada, cerrarFoto, fotoAnterior, fotoSiguiente;
+let fotosGaleria = [];
+let indiceFotoActual = 0;
+
+function actualizarFotoModal(){
+  const img = fotosGaleria[indiceFotoActual];
+  imagenAmpliada.src = img.src;
+  imagenAmpliada.alt = img.alt;
+}
+
+function abrirFoto(indice){
+  indiceFotoActual = indice;
+  actualizarFotoModal();
+  modalFoto.hidden = false;
+}
+
+function irFotoAnterior(){
+  indiceFotoActual = (indiceFotoActual - 1 + fotosGaleria.length) % fotosGaleria.length;
+  actualizarFotoModal();
+}
+
+function irFotoSiguiente(){
+  indiceFotoActual = (indiceFotoActual + 1) % fotosGaleria.length;
+  actualizarFotoModal();
+}
 
 function inicializarGaleriaYCarta(){
   botonSobre = document.getElementById("botonSobre");
@@ -76,6 +105,8 @@ function inicializarGaleriaYCarta(){
   modalFoto = document.getElementById("modalFoto");
   imagenAmpliada = document.getElementById("imagenAmpliada");
   cerrarFoto = document.getElementById("cerrarFoto");
+  fotoAnterior = document.getElementById("fotoAnterior");
+  fotoSiguiente = document.getElementById("fotoSiguiente");
 
   cartaContenido.textContent = MENSAJE_CARTA;
 
@@ -98,15 +129,14 @@ function inicializarGaleriaYCarta(){
     }
   });
 
-  gridGaleria.querySelectorAll(".item-galeria").forEach(item => {
-    item.addEventListener("click", () => {
-      const src = item.querySelector("img").src;
-      const alt = item.querySelector("img").alt;
-      imagenAmpliada.src = src;
-      imagenAmpliada.alt = alt;
-      modalFoto.hidden = false;
-    });
+  fotosGaleria = Array.from(gridGaleria.querySelectorAll(".item-galeria img"));
+
+  gridGaleria.querySelectorAll(".item-galeria").forEach((item, indice) => {
+    item.addEventListener("click", () => abrirFoto(indice));
   });
+
+  fotoAnterior.addEventListener("click", irFotoAnterior);
+  fotoSiguiente.addEventListener("click", irFotoSiguiente);
 
   cerrarFoto.addEventListener("click", () => {
     modalFoto.hidden = true;
@@ -116,6 +146,13 @@ function inicializarGaleriaYCarta(){
     if (e.target === modalFoto){
       modalFoto.hidden = true;
     }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (modalFoto.hidden) return;
+    if (e.key === "ArrowLeft") irFotoAnterior();
+    if (e.key === "ArrowRight") irFotoSiguiente();
+    if (e.key === "Escape") modalFoto.hidden = true;
   });
 }
 
